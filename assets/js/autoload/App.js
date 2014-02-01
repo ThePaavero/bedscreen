@@ -38,7 +38,7 @@ Project.App = function (){
 
 		doDebugToolListeners();
 		setStyle();
-		setKeyboardControls();
+		doControls();
 	};
 
 	var tick = function()
@@ -173,7 +173,7 @@ Project.App = function (){
 		}
 	};
 
-	var setKeyboardControls = function()
+	var doControls = function()
 	{
 		$(document).on('keydown', function(e)
 		{
@@ -183,6 +183,8 @@ Project.App = function (){
 				shutDownAlarm();
 			}
 		});
+
+		$(document).on('click', shutDownAlarm);
 	};
 
 	var shutDownAlarm = function()
