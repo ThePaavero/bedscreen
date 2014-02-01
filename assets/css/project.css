@@ -61,6 +61,9 @@ body {
   body.day {
     background: #c5e3d5; }
 
+a {
+  color: inherit; }
+
 #container {
   padding: 10%;
   color: #294035; }

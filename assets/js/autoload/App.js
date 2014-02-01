@@ -89,14 +89,22 @@ Project.App = function (){
 	var doAlarm = function()
 	{
 		console.log('ALARM!');
+		$('body').addClass('day');
 		playMp3();
 	};
 
 	var doDebugToolListeners = function()
 	{
-		$('#debug_tools').on('click.debugtools', function()
+		$('#debug_tools .setoffalarm').on('click.debugtools', function()
 		{
 			doAlarm();
+			return false;
+		});
+
+		$('#debug_tools .switchdaynightmode').on('click.debugtools', function()
+		{
+			var str = $('body').hasClass('night') ? 'day' : 'night';
+			switchDayNightMode(str);
 			return false;
 		});
 	};
@@ -181,6 +189,12 @@ Project.App = function (){
 	{
 		console.log('Alarm stopped');
 		player.pause();
+	};
+
+	var switchDayNightMode = function(set_mode_to)
+	{
+		$('body').removeClass();
+		$('body').addClass(set_mode_to);
 	};
 
 };
