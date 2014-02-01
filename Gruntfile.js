@@ -1,7 +1,4 @@
-/**
- * This is Activeark JWT's default Gruntfile, feel free to edit to your
- * own taste, but remember to add it to .gitignore if you do.
- */
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({
