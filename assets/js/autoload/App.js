@@ -208,9 +208,15 @@ Project.App = function (){
 	var promptForAlarmTime = function()
 	{
 		var set_to = {
-			hours  : window.prompt('Hour'),
-			minutes: window.prompt('Minute')
+			hours  : parseInt(window.prompt('Hour'), 10),
+			minutes: parseInt(window.prompt('Minute'), 10)
 		};
+
+		if(isNaN(set_to.hours) || isNaN(set_to.hours))
+		{
+			alert('NaN problem, not setting new values for alarm time.');
+			return false;
+		}
 
 		alarm.hours   = set_to.hours;
 		alarm.minutes = set_to.minutes;
