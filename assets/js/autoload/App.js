@@ -28,6 +28,7 @@ Project.App = function (){
 	this.init = function()
 	{
 		console.log('Project initializing...');
+
 		player = document.getElementById('alarm_audio_file');
 
 		doOnDayChange();
@@ -81,9 +82,11 @@ Project.App = function (){
 
 	var updateClock = function()
 	{
+		var formatted_seconds = seconds < 10 ? '0' + seconds : seconds;
+
 		$('#clock .hours').html(hours + ':');
 		$('#clock .minutes').html(minutes);
-		$('#clock .seconds').html(':' + seconds);
+		$('#clock .seconds').html(':' + formatted_seconds);
 	};
 
 	var doAlarm = function()
@@ -134,6 +137,7 @@ Project.App = function (){
 	var getWeather = function()
 	{
 		console.log('Getting weather...');
+
 		$.ajax({
 			url: 'http://api.openweathermap.org/data/2.5/weather?q=Espoo,fi&units=metric',
 			dataType: 'json',
@@ -184,6 +188,8 @@ Project.App = function (){
 			}
 		});
 
+		$(document).on('dblclick', promptForAlarmTime);
+
 		$(document).on('click', shutDownAlarm);
 	};
 
@@ -197,6 +203,19 @@ Project.App = function (){
 	{
 		$('body').removeClass();
 		$('body').addClass(set_mode_to);
+	};
+
+	var promptForAlarmTime = function()
+	{
+		var set_to = {
+			hours  : window.prompt('Hour'),
+			minutes: window.prompt('Minute')
+		};
+
+		alarm.hours   = set_to.hours;
+		alarm.minutes = set_to.minutes;
+
+		console.log(alarm);
 	};
 
 };
